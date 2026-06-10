@@ -2060,6 +2060,98 @@
           font-size: 12px;
           padding: 8px 16px;
         }
+        #btn-qr {
+          font-size: 12px;
+          padding: 8px 16px;
+        }
+      }
+
+      /* ── QR Modal ── */
+      #qr-modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease;
+      }
+      #qr-modal-backdrop.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      #qr-modal {
+        background: #faf9f7;
+        border-radius: 24px;
+        padding: 32px 28px 28px;
+        max-width: 340px;
+        width: calc(100vw - 48px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        transform: scale(0.92);
+        transition: transform 0.22s ease;
+        border: 1px solid #a8a9ad;
+      }
+      #qr-modal-backdrop.open #qr-modal {
+        transform: scale(1);
+      }
+      .qr-modal-title {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: 22px;
+        color: #1b1c1b;
+        letter-spacing: -0.01em;
+        text-align: center;
+      }
+      .qr-modal-sub {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 14px;
+        color: #926e6b;
+        text-align: center;
+        line-height: 1.5;
+        margin-top: -6px;
+      }
+      .qr-img-wrap {
+        width: 220px;
+        height: 220px;
+        border-radius: 16px;
+        border: 2px solid #a8a9ad;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+      }
+      .qr-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .qr-close-btn {
+        background: #fff;
+        border: 1px solid #a8a9ad;
+        color: #926e6b;
+        border-radius: 9999px;
+        padding: 10px 28px;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 4px 0 #d4d4d4;
+        transition: all 0.15s;
+        margin-top: 4px;
+      }
+      .qr-close-btn:active {
+        transform: translateY(4px);
+        box-shadow: none;
       }
 
       /* ── MOBILE INLINE OVERRIDE — targets inline styles on tile elements ── */
@@ -2545,15 +2637,52 @@
             </div>
           </div>
 
-          <!-- Back to Idle button -->
+          <!-- Back to Idle + QR buttons -->
           <div
             style="
               flex-shrink: 0;
               display: flex;
               justify-content: flex-end;
+              align-items: center;
+              gap: 10px;
               padding: 6px 0 0;
             "
           >
+            <!-- Scan QR button -->
+            <button
+              id="btn-qr"
+              style="
+                background: #fff;
+                border: 1px solid #a8a9ad;
+                color: #0038a8;
+                border-radius: 9999px;
+                padding: 10px 22px;
+                font-family: &quot;Space Grotesk&quot;, sans-serif;
+                font-weight: 700;
+                font-size: 13px;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                cursor: pointer;
+                box-shadow: 0 4px 0 #d4d4d4;
+                transition: all 0.15s;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+              onclick="
+                document
+                  .getElementById('qr-modal-backdrop')
+                  .classList.add('open')
+              "
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-size: 18px; color: #0038a8"
+                >qr_code_scanner</span
+              >
+              Scan QR
+            </button>
+
             <button
               id="btn-go-idle"
               style="
@@ -2579,6 +2708,33 @@
             </button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- QR CODE MODAL -->
+    <div
+      id="qr-modal-backdrop"
+      onclick="if (event.target === this) this.classList.remove('open');"
+    >
+      <div id="qr-modal">
+        <div class="qr-modal-title">Scan to Visit Website</div>
+        <div class="qr-modal-sub">
+          Point your camera at the QR code<br />to access the SALIN-LAHI
+          website.
+        </div>
+        <div class="qr-img-wrap">
+          <img src="assets/qr-code.png" alt="QR Code for SALIN-LAHI website" />
+        </div>
+        <button
+          class="qr-close-btn"
+          onclick="
+            document
+              .getElementById('qr-modal-backdrop')
+              .classList.remove('open')
+          "
+        >
+          Close
+        </button>
       </div>
     </div>
 
