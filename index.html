@@ -1430,6 +1430,291 @@
       }
 
       /* ── Confirm Modal ── */
+      /* Timeline photo carousel */
+      #ov-timeline .ov-scrollable.tl-carousel-shell {
+        position: relative;
+        flex: 1;
+        overflow: hidden;
+        background: #111;
+      }
+      #ov-timeline .tl-hero {
+        display: none;
+      }
+      .tl-carousel {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .tl-carousel::-webkit-scrollbar {
+        display: none;
+      }
+      .tl-slide {
+        position: relative;
+        flex: 0 0 100%;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        scroll-snap-align: start;
+        background: #111;
+      }
+      .tl-slide-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .tl-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.16),
+          rgba(0, 0, 0, 0) 48%,
+          rgba(0, 0, 0, 0.24)
+        );
+        pointer-events: none;
+      }
+      .tl-info {
+        position: absolute;
+        inset: 0 auto 0 0;
+        z-index: 2;
+        width: min(440px, 42vw);
+        padding: 28px 42px 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 14px;
+        overflow-y: auto;
+        background: rgba(46, 84, 194, 0.88);
+        border-right: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(4px);
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+      }
+      .tl-info-red {
+        background: rgba(230, 30, 42, 0.88);
+      }
+      .tl-info::-webkit-scrollbar {
+        width: 4px;
+      }
+      .tl-info::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.28);
+        border-radius: 9999px;
+      }
+      .tl-kicker {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fcd400;
+      }
+      .tl-year {
+        font-family: "Fraunces", serif;
+        font-size: clamp(34px, 4.2vw, 54px);
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: 0;
+        color: #fff;
+      }
+      .tl-rule {
+        width: 96px;
+        height: 6px;
+        flex-shrink: 0;
+        background: #fcd400;
+      }
+      .tl-title {
+        font-family: "Fraunces", serif;
+        font-size: 25px;
+        line-height: 1.12;
+        font-weight: 800;
+        color: #fcd400;
+        text-transform: uppercase;
+      }
+      .tl-sub {
+        margin-top: 6px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 15px;
+        line-height: 1.45;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.86);
+      }
+      .tl-body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 14px;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.92);
+      }
+      .tl-fact {
+        border: 1px solid rgba(252, 212, 0, 0.64);
+        border-radius: 0;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.12);
+      }
+      .tl-fact-label {
+        padding: 8px 12px;
+        border-bottom: 1px solid rgba(252, 212, 0, 0.5);
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #221b00;
+        background: rgba(252, 212, 0, 0.88);
+      }
+      .tl-fact-text {
+        padding: 9px 12px 11px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 13px;
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.88);
+      }
+      .tl-nav {
+        position: absolute;
+        z-index: 4;
+        top: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(-50%);
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        border-radius: 50%;
+        background: rgba(189, 0, 26, 0.18);
+        color: rgba(255, 255, 255, 0.72);
+        cursor: pointer;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(3px);
+        transition:
+          transform 0.15s,
+          background 0.15s,
+          color 0.15s;
+      }
+      .tl-nav:hover {
+        background: rgba(0, 0, 0, 0.34);
+        color: rgba(255, 255, 255, 0.94);
+      }
+      .tl-nav:active {
+        transform: translateY(-50%) scale(0.94);
+        background: rgba(189, 0, 26, 0.52);
+      }
+      .tl-nav-prev {
+        left: 448px;
+      }
+      .tl-nav-next {
+        right: 22px;
+      }
+      .tl-nav .material-symbols-outlined {
+        font-size: 30px;
+      }
+      .tl-dots {
+        position: absolute;
+        z-index: 4;
+        right: 34px;
+        bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .tl-dot {
+        width: 12px;
+        height: 12px;
+        border: 0;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.52);
+        cursor: pointer;
+        transition:
+          width 0.22s,
+          background 0.22s;
+      }
+      .tl-dot.active {
+        width: 26px;
+        background: #fcd400;
+      }
+      @media (max-width: 1050px) and (min-width: 761px) {
+        .tl-info {
+          width: min(400px, 46vw);
+          padding-left: 34px;
+          padding-right: 34px;
+        }
+        .tl-nav-prev {
+          left: calc(min(400px, 46vw) + 12px);
+        }
+      }
+      @media (max-width: 760px) {
+        .tl-info {
+          inset: auto 0 0 0;
+          width: 100%;
+          max-height: 58%;
+          padding: 22px 22px 72px;
+          justify-content: flex-start;
+          gap: 12px;
+          overflow-y: auto;
+          border-right: 0;
+          border-top: 1px solid rgba(168, 169, 173, 0.38);
+        }
+        .tl-year {
+          font-size: 34px;
+        }
+        .tl-title {
+          font-size: 22px;
+        }
+        .tl-sub,
+        .tl-body {
+          font-size: 14px;
+        }
+        .tl-fact-text {
+          font-size: 13px;
+        }
+        .tl-nav {
+          width: 44px;
+          height: 44px;
+        }
+        .tl-nav-prev {
+          left: 12px;
+        }
+        .tl-nav-next {
+          right: 12px;
+        }
+        .tl-dots {
+          right: 50%;
+          bottom: 22px;
+          transform: translateX(50%);
+        }
+      }
+      @media (max-height: 620px) and (min-width: 761px) {
+        .tl-info {
+          padding: 24px 34px;
+          gap: 12px;
+        }
+        .tl-year {
+          font-size: 38px;
+        }
+        .tl-title {
+          font-size: 22px;
+        }
+        .tl-body {
+          font-size: 14px;
+          line-height: 1.48;
+        }
+        .tl-fact-text {
+          font-size: 13px;
+          line-height: 1.42;
+        }
+      }
+
       #confirm-modal {
         position: fixed;
         inset: 0;
@@ -2967,11 +3252,25 @@
         <div class="tl-hero-sub">From Gently Sloping Shore to Smart City</div>
         <span class="tl-years-badge">PRE-COLONIAL → PRESENT</span>
       </div>
-      <div class="ov-scrollable">
-        <div class="tl-spine-wrap">
-          <div class="tl-spine"></div>
-          <div class="tl-events" id="tl-events"></div>
-        </div>
+      <div class="ov-scrollable tl-carousel-shell">
+        <button
+          class="tl-nav tl-nav-prev"
+          id="tl-prev"
+          type="button"
+          aria-label="Previous timeline photo"
+        >
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <div class="tl-carousel" id="tl-carousel" aria-live="polite"></div>
+        <button
+          class="tl-nav tl-nav-next"
+          id="tl-next"
+          type="button"
+          aria-label="Next timeline photo"
+        >
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+        <div class="tl-dots" id="tl-dots" aria-label="Timeline slides"></div>
       </div>
     </div>
 
@@ -3208,7 +3507,7 @@
         var c = DATA.city;
         var html = "";
         html +=
-          '<div class="city-hero"><img src="assets\\ulo-ng-apo.jpg"' +
+          '<div class="city-hero"><img src="assets/homepage/ulo-ng-apo.jpg"' +
           c.photo_url +
           '" alt="' +
           c.name +
@@ -3772,6 +4071,90 @@
       ];
 
       function buildTimeline() {
+        var carousel = g("tl-carousel");
+        var dotsWrap = g("tl-dots");
+        if (!carousel || !dotsWrap) return;
+
+        var slides = "";
+        var dots = "";
+        TL_ITEMS.forEach(function (item, i) {
+          var imgExt = i === 0 || i === 6 ? "png" : "jpg";
+          var imgSrc = "assets/timeline/timeline-" + (i + 1) + "." + imgExt;
+          slides += '<section class="tl-slide" aria-label="' + item.year + '">';
+          slides +=
+            '<img class="tl-slide-img" src="' +
+            imgSrc +
+            '" alt="' +
+            item.title +
+            '" />';
+          slides += '<div class="tl-info' + (i % 2 ? " tl-info-red" : "") + '">';
+          slides += '<div class="tl-year">' + item.year + "</div>";
+          slides += '<div class="tl-rule"></div>';
+          slides +=
+            '<div><div class="tl-title">' +
+            item.title +
+            '</div><div class="tl-sub">' +
+            item.sub +
+            "</div></div>";
+          slides += '<div class="tl-body">' + item.body + "</div>";
+          slides +=
+            '<div class="tl-fact"><div class="tl-fact-label">Did You Know?</div>';
+          slides += '<div class="tl-fact-text">' + item.did + "</div></div>";
+          slides += "</div></section>";
+          dots +=
+            '<button class="tl-dot' +
+            (i === 0 ? " active" : "") +
+            '" type="button" aria-label="Go to timeline slide ' +
+            (i + 1) +
+            '" data-i="' +
+            i +
+            '"></button>';
+        });
+        carousel.innerHTML = slides;
+        dotsWrap.innerHTML = dots;
+
+        var prev = g("tl-prev");
+        var next = g("tl-next");
+        var dotBtns = dotsWrap.querySelectorAll(".tl-dot");
+
+        function setTimelineDot(index) {
+          dotBtns.forEach(function (dot, i) {
+            dot.classList.toggle("active", i === index);
+          });
+        }
+
+        function goTimeline(delta) {
+          var index = Math.round(carousel.scrollLeft / carousel.clientWidth);
+          var nextIndex = (index + delta + TL_ITEMS.length) % TL_ITEMS.length;
+          carousel.scrollTo({
+            left: nextIndex * carousel.clientWidth,
+            behavior: "smooth",
+          });
+          setTimelineDot(nextIndex);
+        }
+
+        prev.onclick = function () {
+          goTimeline(-1);
+        };
+        next.onclick = function () {
+          goTimeline(1);
+        };
+        dotBtns.forEach(function (dot) {
+          dot.onclick = function () {
+            var index = parseInt(this.getAttribute("data-i"), 10);
+            carousel.scrollTo({
+              left: index * carousel.clientWidth,
+              behavior: "smooth",
+            });
+            setTimelineDot(index);
+          };
+        });
+        carousel.onscroll = function () {
+          var index = Math.round(carousel.scrollLeft / carousel.clientWidth);
+          setTimelineDot(index);
+        };
+        return;
+
         var html = "";
         TL_ITEMS.forEach(function (item) {
           html += '<div class="tl-item">';
@@ -3840,16 +4223,16 @@
 
       // ── Idle fullscreen crossfade ──
       var IDLE_IMAGES = [
-        "assets/3-krus.jpg",
-        "assets/aeta3.jpg",
-        "assets/barretto.jpg",
-        "assets/kalaklan-lighthouse.jpg",
-        "assets/ulo-ng-apo.jpg",
-        "assets/triangle.jpg",
-        "assets/aeta1.jpg",
-        "assets/bagong-palengke.jpg",
-        "assets/kalapati.jpg",
-        "assets/marikit.jpg",
+        "assets/homepage/3-krus.jpg",
+        "assets/homepage/aeta3.jpg",
+        "assets/homepage/barretto.jpg",
+        "assets/homepage/kalaklan-lighthouse.jpg",
+        "assets/homepage/ulo-ng-apo.jpg",
+        "assets/homepage/triangle.jpg",
+        "assets/homepage/aeta1.jpg",
+        "assets/homepage/bagong-palengke.jpg",
+        "assets/homepage/kalapati.jpg",
+        "assets/homepage/marikit.jpg",
       ];
 
       var idleCur = 0;
